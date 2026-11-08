@@ -1,4 +1,4 @@
-/*
+
 PROJECT: HOTEL BOOKING DATA CLEANING
 DATABASE: MySQL
 PURPOSE: Clean and standardize the hotel booking dataset.
@@ -10,7 +10,7 @@ IMPORTANT:
 2. Run this script against a fresh `hotels_clean` table.
 3. The original booking_date and arrival_date columns are retained as TEXT.
    Standardized dates are stored in clean_booking_dates and clean_arrival_dates.
-*/
+
 
 -- =========================================================
 -- 01. CREATE A STAGING / WORKING TABLE
@@ -791,35 +791,3 @@ ALTER TABLE hotels_clean
 MODIFY COLUMN deposit_type VARCHAR(30) NULL;
 
 
--- =========================================================
--- 64. FINAL CHECK: VERIFY RECORD COUNT
--- Expected final record count: 4,891
--- =========================================================
-
-SELECT COUNT(*) AS total_records
-FROM hotels_clean;
-
-
--- =========================================================
--- 65. FINAL CHECK: VERIFY BOOKING_ID UNIQUENESS
--- =========================================================
-
-SELECT
-    COUNT(*) AS total_records,
-    COUNT(DISTINCT booking_id) AS unique_booking_ids,
-    SUM(booking_id IS NULL) AS null_booking_ids
-FROM hotels_clean;
-
-
--- =========================================================
--- 66. FINAL CHECK: REVIEW FINAL TABLE STRUCTURE
--- =========================================================
-
-DESCRIBE hotels_clean;
-
-
--- =========================================================
--- END OF HOTEL BOOKING DATA CLEANING PROJECT
--- =========================================================
-
-SET SQL_SAFE_UPDATES = 1;
